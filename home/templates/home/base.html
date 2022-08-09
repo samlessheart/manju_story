@@ -1,0 +1,160 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+      <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src = "https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{%static 'article/main.css'%}">
+
+    <title>Manjunath</title>
+</head>
+
+<body>
+    
+    <div class="jumbotron"><h1 class="text-center">The Path of Manjunath ..!</h1></div>
+
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark   ">
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-xl-around " id="collapse_target">
+                <ul class="navbar-nav px-2">
+                    <li class="nav-item px-4">
+                        <a class="nav-link" href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="nav-item px-4">
+                        <a class="nav-link" href="#">Stories</a>
+                    </li>
+
+                    <li class="nav-item px-4">
+                        <a class="nav-link" href="#">Photos</a>
+                    </li>
+
+                    <li class="nav-item px-4">
+                        <a class="nav-link" href="#">Videos</a>
+                    </li>
+
+
+                    
+                    {% if user.is_authenticated %}
+                    <li class="nav-item px-4">
+                        <a class="nav-link" href="#"></a>
+                    </li>
+                    <li class="nav-item px-4">
+                        <a class="nav-link" href="{%url 'profile'%}">{{ user.get_username }}</a>
+                    </li>
+                    
+                    
+                    {%else%}
+                    <li class="nav-item px-4">
+                         {% comment %} <a class="nav-link" href="{%url 'signin'%}">Log in</a>  {% endcomment %}
+                    </li>
+                    {%endif%}
+
+                </ul>
+                
+            </div>
+
+        </nav>
+    </header>
+    
+    
+    <div class="container">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+    {% block content %}{% endblock %}
+
+
+
+    {% block jscripts %}{% endblock %}
+
+    <footer class="text-center text-white" style="background-color: #f1f1f1;">
+        <!-- Grid container -->
+        <div class="container pt-4">
+          <!-- Section: Social media -->
+          <section class="mb-4">
+            <!-- Facebook -->
+            <a
+              class="btn btn-link btn-floating btn-lg text-dark m-1"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+      
+            <!-- Twitter -->
+            <a
+              class="btn btn-link btn-floating btn-lg text-dark m-1"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+              ><i class="fab fa-twitter"></i
+            ></a>
+      
+            <!-- Google -->
+            <a
+              class="btn btn-link btn-floating btn-lg text-dark m-1"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+              ><i class="fab fa-google"></i
+            ></a>
+      
+            <!-- Instagram -->
+            <a
+              class="btn btn-link btn-floating btn-lg text-dark m-1"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+              ><i class="fab fa-instagram"></i
+            ></a>
+      
+            <!-- Linkedin -->
+            <a
+              class="btn btn-link btn-floating btn-lg text-dark m-1"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+              ><i class="fab fa-linkedin"></i
+            ></a>
+            <!-- Github -->
+            <a
+              class="btn btn-link btn-floating btn-lg text-dark m-1"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+              ><i class="fab fa-github"></i
+            ></a>
+          </section>
+          <!-- Section: Social media -->
+        </div>
+        <!-- Grid container -->
+      
+        <!-- Copyright -->
+        <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+          This website is created and managed by Samir and Manjunath
+          <a class="text-dark" href="#"></a>
+        </div>
+        <!-- Copyright -->
+      </footer>
+
+</body>
+
+</html>

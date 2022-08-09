@@ -1,0 +1,53 @@
+{%extends "home/base.html"%}
+
+{%block content%}
+
+<div class="container">
+
+    <p class="container my-4 col-9">This is the Path of Manjunath. Its not easy to walk on Path Of Manjunath, well it's
+        not that hard either. But its full of hardship and agony and pain and suffering and torment. But there are some
+        moments which he Finds Beautiful and Mesmorising and Funny and Great and Nice that he can't help but capture, in
+        whatever way he can. And this Website is dedicated to those captured moments. Hope You will enjoy it as much as
+        we have while making it.
+    </p>
+
+</div>
+
+
+<div class=" ">
+
+    <div class="row justify-content-around">
+        <h2 class="col-2 bg-primary">something</h2>
+
+        <div class="col-8 bg-warning row justify-content-around">
+
+            {% for i in photos_obj%}
+
+            <div class=" shadow-lg card my-4 col-3 mx-1" style="width: 31.0%;
+            flex: 0 0 31.499%; max-width: 31.499%;">
+                <img src="{{i.image_link}}"
+                    class="card-img-top mt-3 rounded" alt="Image is Loading">
+                <div class="card-body">
+                    <h5 class="d-flex justify-content-center card-title">{{i.title}}</h5>
+
+                    <a href="#" class="d-flex btn btn-primary justify-content-center">Like</a>
+                </div>
+            </div>
+
+            {% endfor %}
+
+
+        </div>
+
+        <div class="bg-primary col-2">
+            <h2>something</h2>
+
+
+
+        </div>
+    </div>
+
+</div>
+
+
+{%endblock content%}
