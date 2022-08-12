@@ -1,6 +1,8 @@
+import fileinput
 from django import forms
-from django.forms import (fields, widgets, Textarea, NumberInput, Select, DateField)
-from .models import Story, MyPhoto, Comment
+from django.forms import (fields, widgets, Textarea, NumberInput, Select, DateField, ImageField, 
+                            FileInput, ClearableFileInput)
+from .models import Story, MyPhoto, Comment, MyVideo
 
 
 class storyForm(forms.ModelForm):
@@ -10,8 +12,8 @@ class storyForm(forms.ModelForm):
 
 
         widgets = {
-                'title' : Textarea(attrs={'rows': 1,'class': 'form-control col-8'}),
-                'post': Textarea(attrs={ 'rows': 1, 'class': 'form-control col-8'}),
+                'title' : Textarea(attrs={'rows': 1,'class': 'form-control col-6'}),
+                'post': Textarea(attrs={ 'rows': 1, 'class': 'form-control col-6'}),
                 
             }
 
@@ -19,13 +21,28 @@ class photoForm(forms.ModelForm):
     class Meta:
         model = MyPhoto
         fields = ['title', 'image_link', 'description']
+        labels = {'image_link': "Upload Image"}
 
         widgets = {
-                'title' : Textarea(attrs={'rows': 1,'class': 'form-control col-8'}),
-                'image_link': Textarea(attrs={ 'rows': 1, 'class': 'form-control col-8'}),
-                'description' : Textarea(attrs={ 'rows': 1, 'class': 'form-control col-8'}),
+                'title' : Textarea(attrs={'rows': 1,'class': 'form-control col-6'}),
+                'image_link': ClearableFileInput(),
+                'description' : Textarea(attrs={ 'rows': 1, 'class': 'form-control col-6'}),
 
             }
+
+class videoForm(forms.ModelForm):
+    class Meta:
+        model = MyVideo
+        fields = ['title', 'video_link', 'description']
+        labels = {'video_link': "Upload Video"}
+
+        widgets = {
+                'title' : Textarea(attrs={'rows': 1,'class': 'form-control col-6'}),
+                'video_link': ClearableFileInput(),
+                'description' : Textarea(attrs={ 'rows': 1, 'class': 'form-control col-6'}),
+
+            }
+
 
 class commentForm(forms.ModelForm):
     class Meta: 

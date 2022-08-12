@@ -1,0 +1,16 @@
+{%extends "home/base.html"%}
+{% load cloudinary %}
+
+{%block content%}
+
+<div class="container justify-content-around">
+   
+
+    {% for photo in photos  %}
+    {%cloudinary photo.image_link.url%}
+    {% endfor %}
+  
+</div>
+
+
+{%endblock content%}

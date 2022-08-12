@@ -2,24 +2,33 @@
 
 {%block content%}
 
-<div class="container">
-   
+<div class="container justify-content-around">
+
     <br>
-    <button class="btn  mr-4" >
-        <a href="{%url 'addphoto' %}"> Add Image</a>
-    </button>
- 
-    <button class="btn  mr-4" >
-        <a href="#"> Add Story</a>
-    </button>
+    
+        <button class="btn  mr-4">
+            <a href="{%url 'addphoto' %}"> Add Image</a>
+        </button>
 
-    <button class="btn mr-4" >
-        <a href="#"> Add Video</a>
-    </button>
+        <button class="btn  mr-4">
+            <a href="{%url 'addstory' %}"> Add Story</a>
+        </button>
 
-    <button class="btn" >
-        <a href="#">Logout</a>
-    </button>
+        <button class="btn mr-4">
+            <a href="{%url 'addvideo' %}"> Add Video</a>
+        </button>
+
+        {% if user.is_authenticated %}
+        <button class="btn">
+            <a href="{%url 'logout' %}">Logout</a>
+        </button>
+        {%else%}
+        <button class="btn">
+            <a href="{%url 'login' %}">Login</a>
+        </button>
+        {%endif%}
+
+    
     <br>
     <br>
 </div>

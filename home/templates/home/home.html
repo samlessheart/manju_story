@@ -1,4 +1,6 @@
-{%extends "home/base.html"%}
+{% extends "home/base.html"%}
+{% load static %}
+{% load cloudinary %}
 
 {%block content%}
 
@@ -17,16 +19,18 @@
 <div class=" ">
 
     <div class="row justify-content-around">
-        <h2 class="col-2 bg-primary">something</h2>
 
-        <div class="col-8 bg-warning row justify-content-around">
+        {% comment %} <h2 class="col-2 bg-primary">something</h2> {% endcomment %}
+
+        <div class="col-8 row justify-content-around" style="background-color: #ffcff9;">
 
             {% for i in photos_obj%}
 
             <div class=" shadow-lg card my-4 col-3 mx-1" style="width: 31.0%;
             flex: 0 0 31.499%; max-width: 31.499%;">
-                <img src="{{i.image_link}}"
-                    class="card-img-top mt-3 rounded" alt="Image is Loading">
+                {% comment %} <img src="{% cloudinary i.image_link.url width=200 height=100 %}"                
+                    class="card-img-top mt-3 rounded" alt="Image is Loading"> {% endcomment %}
+               <div class="card-img-top mt-3 rounded ">{% cloudinary i.image_link.url width=230 height=140 %} </div> 
                 <div class="card-body">
                     <h5 class="d-flex justify-content-center card-title">{{i.title}}</h5>
 
@@ -39,8 +43,9 @@
 
         </div>
 
-        <div class="bg-primary col-2">
-            <h2>something</h2>
+        {% comment %} <div class="bg-primary col-2">
+             <h2>something</h2>  {% endcomment %}
+        
 
 
 

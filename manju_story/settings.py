@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-oz3*j!q7t9a5v3ni&vj36cun=-$ugpqz8)so8z79k+3$+*-b$-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -36,8 +36,10 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    
     'django.contrib.staticfiles',
     'home',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -103,6 +105,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LOGIN_REDIRECT_URL = 'home/'
 
+CLOUDINARY_STORAGE = {'CLOUD_NAME': 'samless','API_KEY': '168569631945397',
+                    'API_SECRET': 'Og6rYKS0JYLOvpcJG58Q3bzyoRw',}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
@@ -119,7 +126,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = ''
+STATIC_ROOT = ''    
+STATIC_URL = '/static/'
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
