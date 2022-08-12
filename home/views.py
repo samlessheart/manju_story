@@ -3,7 +3,7 @@ from multiprocessing import context
 from wsgiref.util import request_uri
 from django.shortcuts import render, redirect
 from .forms import photoForm, storyForm, videoForm, commentForm
-from .models import MyPhoto, MyVideo,  Story
+from .models import MyPhoto, MyVideo,  Story, Comment
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import logout
@@ -11,7 +11,7 @@ from django.contrib.auth import logout
 
 
 def home(request):
-    photos = MyPhoto.objects.all()[:10]
+    photos = MyPhoto.objects.all()[:3]
     context = {"photos_obj":photos}
     return render(request, "home/home.html", context)
 
@@ -23,6 +23,23 @@ def photolist(request):
     photos = MyPhoto.objects.all()
     context = {"photos":photos}
     return render(request, "home/photolist.html", context)
+
+def photodet(request, pk):
+    photo_obj = MyPhoto.objects.get(id = pk)
+    comments = Comment.objects.filter(photo = photo_obj)
+    form = commentForm()
+    if request.method == "POST":
+        form = commentForm(request.POST)
+        if form.is_valid():
+            main = form.cleaned_data["main"]
+            name = form.cleaned_data["name"]
+            comment_obj = Comment.objects.create(main=main, name=name, photo=photo_obj)
+            comment_obj.save()
+            messages.success(request, f"Thanks for your valuable Comment!")
+            return redirect("photodet", photo_obj.id)
+    context = {"photo": photo_obj,  "form":form, "comments":comments}
+    
+    return render(request, "home/photodet.html", context)
 
 def storylist(request):
     stories = Story.objects.all()
@@ -40,15 +57,13 @@ def logout_view(request):
     return redirect("home")
 
 
-
-
 @login_required
 def addphoto(request):
     form  = photoForm()
     context = {'form':form}
     if request.method == 'POST':
         form = photoForm(request.POST, request.FILES)
-        print(form)
+        # print(form)
         if form.is_valid():
             print("form is valid")
             image_link = form.cleaned_data.get('image_link')
@@ -79,9 +94,9 @@ def addstory(request):
             messages.success(request, f"{mystory} Manjunath you added the new Story, it looks nice..!")
             return redirect('home')
         else:
-            messages.warning(request, f" Manjunath you may have made a mistake, apparently..!")
-                      
+            messages.warning(request, f" Manjunath you may have made a mistake, apparently..!")                     
     return render(request, "home/addstory.html", context)
+
 
 @login_required
 def addvideo(request):
@@ -102,7 +117,6 @@ def addvideo(request):
         else:
             print("form is not valid")            
             messages.warning(request, f" Manjunath you seem to have made a mistake, apparently..!")
-
     return render(request, "home/addvideo.html", context)
 
 

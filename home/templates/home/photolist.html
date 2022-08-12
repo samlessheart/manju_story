@@ -3,13 +3,45 @@
 
 {%block content%}
 
-<div class="container justify-content-around">
-   
 
-    {% for photo in photos  %}
-    {%cloudinary photo.image_link.url%}
-    {% endfor %}
-  
+<div class=" ">
+
+    <div class="row justify-content-around">
+
+        {% comment %} <h2 class="col-2 bg-primary">something</h2> {% endcomment %}
+
+        <div class="col-8 row justify-content-around" style="background-color: #ffcff9;">
+
+            {% for photo in photos%}
+
+            <div class=" shadow-lg card my-4 col-3 mx-1" style="width: 31.0%;
+            flex: 0 0 31.499%; max-width: 31.499%;">
+                 <img src="{{ photo.image_link.url}}"
+                    class="card-img-top mt-3 rounded h-50" alt="Image is Loading"> 
+                
+                <div class="card-body">
+                    <h5 class="d-flex justify-content-center card-title">
+                        <a href="{% url 'photodet' photo.id%}"> {{photo.title}}</a>
+                        </h5>
+
+                    <a href="#" class="d-flex btn btn-primary justify-content-center">Like</a>
+                </div>
+            </div>
+
+            {% endfor %}
+
+
+        </div>
+
+        {% comment %} <div class="bg-primary col-2">
+            <h2>something</h2> {% endcomment %}
+
+
+
+
+        </div>
+    </div>
+
 </div>
 
 

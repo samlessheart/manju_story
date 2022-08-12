@@ -14,6 +14,7 @@ urlpatterns = [
      path('storylist/', views.storylist, name='storylist'),
      path('photolist/', views.photolist, name='photolist'),
      path('videolist/', views.videolist, name='videolist'),
+     path('photodet/<int:pk>', views.photodet, name='photodet'),
 
     
 ]

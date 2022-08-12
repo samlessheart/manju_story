@@ -1,0 +1,38 @@
+{%extends "home/base.html"%}
+{%load cloudinary%}
+
+
+{%block content%}
+
+<div class="container">
+
+    
+    <div class="">
+        <img src="{{photo.image_link.url}}" alt="" class="img-responsive w-75">
+    </div>
+    
+    <div>
+<br>
+        {% for comment in comments %}
+        <br>
+        <p> {{comment.main}}</p>
+        
+        <small> {{comment.name}}</small>
+        <br>
+
+        {% endfor %}
+       
+
+    </div>
+<br>
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">add comment</button>
+    </form>
+
+
+</div>
+
+
+{%endblock content%}

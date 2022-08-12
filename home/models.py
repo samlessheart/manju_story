@@ -38,7 +38,7 @@ class Story(models.Model):
 
 class Comment(models.Model):
     main = models.TextField()
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=50)
     story = models.ForeignKey(Story, null=True, on_delete=models.CASCADE)
     photo = models.ForeignKey(MyPhoto, null=True, on_delete=models.CASCADE)
 

@@ -46,9 +46,9 @@ class videoForm(forms.ModelForm):
 
 class commentForm(forms.ModelForm):
     class Meta: 
-        model = Comment()
+        model = Comment
         fields = ['main', 'name']
-
+        labels = {'main': "Comment", 'name': "Your Name"}
 
         widgets = {
                 'main' : Textarea(attrs={'rows': 1,'class': 'form-control col-8'}),
