@@ -8,14 +8,15 @@
 
     
     <div class="">
-        <img src="{{photo.image_link.url}}" alt="" class="img-responsive w-75">
+        <img src="{{photo.image_link.url}}" alt="" class="img-responsive w-75 mb-4">
     </div>
     
-    <div>
-<br>
+    <div class="d-flex justify-content-end bg-primary">
+
         {% for comment in comments %}
         <br>
-        <p> {{comment.main}}</p>
+        <div>
+        <p class="justify-content-center"> {{comment.main}}</p></div>
         
         <small> {{comment.name}}</small>
         <br>

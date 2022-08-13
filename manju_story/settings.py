@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,10 +21,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-oz3*j!q7t9a5v3ni&vj36cun=-$ugpqz8)so8z79k+3$+*-b$-'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
@@ -105,8 +106,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LOGIN_REDIRECT_URL = 'home/'
 
-CLOUDINARY_STORAGE = {'CLOUD_NAME': 'samless','API_KEY': '168569631945397',
-                    'API_SECRET': 'Og6rYKS0JYLOvpcJG58Q3bzyoRw',}
+CLOUDINARY_STORAGE = {'CLOUD_NAME': config('CLOUD_NAME'),'API_KEY': config('API_KEY'),
+                    'API_SECRET': config('API_SECRET'),}
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
