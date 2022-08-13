@@ -1,6 +1,3 @@
-from email import message
-from multiprocessing import context
-from wsgiref.util import request_uri
 from django.shortcuts import render, redirect
 from .forms import photoForm, storyForm, videoForm, commentForm
 from .models import MyPhoto, MyVideo,  Story, Comment
