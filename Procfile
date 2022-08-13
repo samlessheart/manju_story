@@ -1,1 +1,1 @@
-web: gunicorn library.wsgi --log-file -
+web: gunicorn manju_story.wsgi --log-file -
